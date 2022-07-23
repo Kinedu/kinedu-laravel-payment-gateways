@@ -63,7 +63,28 @@ class PaymentIntent extends ApiResource
     }
 
     /**
-     * Confirm the payment intent.
+     * Cancel the given payment intent.
+     *
+     * @param  string  $paymentIntentId
+     * @param  array  $data
+     *
+     * @throws \Exception
+     *
+     * @return \Kinedu\PaymentGateways\Stripe\PaymentIntent
+     */
+    public static function cancel(string $paymentIntentId, array $data = [])
+    {
+        try {
+            $paymentIntent = self::get($paymentIntentId)->cancel($data);
+        } catch (Exception $e) {
+            throw $e;
+        }
+
+        return Util::convertToObject($paymentIntent);
+    }
+
+    /**
+     * Confirm the given payment intent.
      *
      * @param  string  $paymentIntentId
      * @param  array  $data

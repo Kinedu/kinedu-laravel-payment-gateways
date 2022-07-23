@@ -146,6 +146,19 @@ class StripePaymentGateway implements PaymentGateway
     }
 
     /**
+     * Cancel a payment intent.
+     *
+     * @param  string  $paymentIntentId
+     * @param  array  $data
+     *
+     * @return \Kinedu\PaymentGateways\Stripe\PaymentIntent
+     */
+    public function cancelPaymentIntent(string $paymentIntentId, array $data = [])
+    {
+        return StripePaymentIntent::cancel($paymentIntentId, $data);
+    }
+
+    /**
      * Return the name of the current payment provider.
      *
      * @return string
